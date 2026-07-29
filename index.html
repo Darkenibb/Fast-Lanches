@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fast Lanches</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
     <header>
@@ -16,11 +14,143 @@
     </header>
 
     <nav>
-        <a href="#inicio">Início</a>
-        <a href="#produtos">Lanches</a>
-        <a href="#porcoes">Porções</a>
-        <a href="#contato">Contato</a>
+        <button class="btn-abrir-gaveta" onclick="abrirGavetaPrincipal()">Fazer um pedido 🍔</button>
     </nav>
+
+    <div id="gaveta-principal" class="gaveta">
+        <div class="gaveta-header">
+            <h3>Categorias</h3>
+            <button class="btn-fechar" onclick="fecharGavetaPrincipal()">&times;</button>
+        </div>
+        <div class="gaveta-content">
+            <button class="btn-categoria" onclick="abrirSubGaveta('destaque')">⭐ Produtos em Destaque</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('combos-dia')">🔥 Combos do Dia</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('lanches')">🍔 Lanches</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('doces')">🍩 Doces</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('bebidas')">🥤 Bebidas</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('combos')">🎁 Combos</button>
+        </div>
+    </div>
+
+    <div id="sub-destaque" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('destaque')">&#10094; Voltar</button>
+            <h3>Produtos em Destaque</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100" alt="X-Burger Especial">
+                <div>
+                    <h4>X-Burger Especial</h4>
+                    <p>R$ 29,90</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="sub-combos-dia" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('combos-dia')">&#10094; Voltar</button>
+            <h3>Combos do Dia</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100" alt="Combo Duplo">
+                <div>
+                    <h4>Combo Duplo + Batata</h4>
+                    <p>R$ 39,90</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="sub-lanches" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('lanches')">&#10094; Voltar</button>
+            <h3>Lanches</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=100" alt="X-Salada">
+                <div>
+                    <h4>X-Salada Especial</h4>
+                    <p>R$ 31,50</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=100" alt="Smash Burger">
+                <div>
+                    <h4>Smash Burger</h4>
+                    <p>R$ 24,99</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="sub-doces" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('doces')">&#10094; Voltar</button>
+            <h3>Doces</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100" alt="Milkshake">
+                <div>
+                    <h4>Milkshake de Chocolate</h4>
+                    <p>R$ 16,00</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="sub-bebidas" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('bebidas')">&#10094; Voltar</button>
+            <h3>Bebidas</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100" alt="Coca-Cola">
+                <div>
+                    <h4>Coca-Cola Lata 350ml</h4>
+                    <p>R$ 6,50</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100" alt="Suco Natural">
+                <div>
+                    <h4>Suco de Laranja 500ml</h4>
+                    <p>R$ 9,00</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="sub-combos" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('combos')">&#10094; Voltar</button>
+            <h3>Combos</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100" alt="Combo Família">
+                <div>
+                    <h4>Combo Família (3 Burgers)</h4>
+                    <p>R$ 79,90</p>
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="fecharTudo()"></div>
 
     <section class="banner-carrossel" id="inicio">
         <div class="slides">
@@ -28,12 +158,10 @@
                 <h2>Fast Lanches</h2>
                 <p>O melhor hambúrguer artesanal da região!</p>
             </div>
-
             <div class="slide slide-2">
                 <h2>Combo do Dia!</h2>
                 <p>Burger Duplo + Batata + Refri com desconto especial</p>
             </div>
-
             <div class="slide slide-3">
                 <h2>Entrega Rápida</h2>
                 <p>Peça online e receba quentinho na sua casa!</p>
@@ -45,11 +173,8 @@
     </section>
 
     <section class="container" id="produtos">
-
-        <h2>Nossos Lanches</h2>
-
+        <h2>Cardápio em Destaque</h2>
         <div class="produtos">
-
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="X-Burguer Clássico">
                 <div class="card-content">
@@ -58,7 +183,6 @@
                     <button>Comprar</button>
                 </div>
             </div>
-
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500" alt="X-Salada Especial">
                 <div class="card-content">
@@ -67,7 +191,6 @@
                     <button>Comprar</button>
                 </div>
             </div>
-
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500" alt="Combo Duplo Bacon">
                 <div class="card-content">
@@ -76,37 +199,7 @@
                     <button>Comprar</button>
                 </div>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500" alt="Smash Burger">
-                <div class="card-content">
-                    <h3>Smash Burger</h3>
-                    <p class="preco">R$ 24,99</p>
-                    <button>Comprar</button>
-                </div>
-            </div>
-
         </div>
-
-    </section>
-
-    <section class="container" id="porcoes">
-
-        <h2>Porções & Acompanhamentos</h2>
-
-        <div class="produtos">
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500" alt="Batata Frita com Bacon">
-                <div class="card-content">
-                    <h3>Batata Frita C/ Bacon</h3>
-                    <p class="preco">R$ 22,00</p>
-                    <button>Comprar</button>
-                </div>
-            </div>
-
-        </div>
-
     </section>
 
     <section class="container" id="contato">
@@ -119,8 +212,9 @@
     </footer>
 
     <script>
+        /* LÓGICA DO CARROSSEL DE BANNERS */
         let indiceAtual = 0;
-        const tempoTroca = 4000; // Tempo em ms (4 segundos)
+        const tempoTroca = 4000;
 
         function mostrarSlide(indice) {
             const slides = document.querySelectorAll('.slide');
@@ -142,11 +236,33 @@
             mostrarSlide(indiceAtual + direcao);
         }
 
-        // Troca automática a cada 4 segundos
         setInterval(() => {
             mudarSlide(1);
         }, tempoTroca);
-    </script>
 
+        /* LÓGICA DO MENU GAVETA E SUBGAVETAS */
+        function abrirGavetaPrincipal() {
+            document.getElementById('gaveta-principal').classList.add('ativa');
+            document.getElementById('overlay').classList.add('ativo');
+        }
+
+        function fecharGavetaPrincipal() {
+            document.getElementById('gaveta-principal').classList.remove('ativa');
+            document.getElementById('overlay').classList.remove('ativo');
+        }
+
+        function abrirSubGaveta(idCategoria) {
+            document.getElementById('sub-' + idCategoria).classList.add('ativa');
+        }
+
+        function fecharSubGaveta(idCategoria) {
+            document.getElementById('sub-' + idCategoria).classList.remove('ativa');
+        }
+
+        function fecharTudo() {
+            document.querySelectorAll('.gaveta').forEach(g => g.classList.remove('ativa'));
+            document.getElementById('overlay').classList.remove('ativo');
+        }
+    </script>
 </body>
 </html>
