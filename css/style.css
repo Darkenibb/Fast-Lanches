@@ -13,6 +13,26 @@ body {
     background: #fff;
 }
 
+/* NOTIFICAÇÃO TOAST (FLUTUANTE NO CANTO INFERIOR) */
+.notificacao {
+    position: fixed;
+    bottom: -60px;
+    right: 20px;
+    background-color: #27ae60;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 2000;
+    transition: bottom 0.4s ease-in-out;
+}
+
+.notificacao.visivel {
+    bottom: 20px;
+}
+
 /* HEADER */
 header {
     background-image: url('https://i.postimg.cc/bYT6StHz/imagem-2026-07-29-082556617.png');
@@ -40,27 +60,38 @@ header p {
     text-shadow: 2px 2px 8px rgb(0, 0, 0);
 }
 
-/* MENU */
+/* MENU E NAVEGAÇÃO */
 nav {
     background: #8f0000;
     padding: 15px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.btn-abrir-gaveta {
+.btn-abrir-gaveta, .btn-ver-carrinho {
     background-color: #ff914d;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    padding: 12px 25px;
+    padding: 12px 20px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: 0.3s;
 }
 
+.btn-ver-carrinho {
+    background-color: #27ae60;
+}
+
 .btn-abrir-gaveta:hover {
     background-color: #ff6600;
+}
+
+.btn-ver-carrinho:hover {
+    background-color: #2ecc71;
 }
 
 /* ESTRUTURA DAS GAVETAS (SIDEBAR) */
@@ -79,7 +110,7 @@ nav {
 }
 
 .subgaveta {
-    z-index: 1001; /* Garante que a subgaveta fique por cima */
+    z-index: 1001;
 }
 
 .gaveta.ativa {
@@ -269,7 +300,7 @@ nav {
     background-color: rgb(249, 8, 8);
 }
 
-/* CONTAINER */
+/* CONTAINER DE PRODUTOS */
 .container {
     width: 90%;
     margin: auto;
@@ -282,7 +313,6 @@ nav {
     color: #333;
 }
 
-/* PRODUTOS */
 .produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -335,6 +365,132 @@ button {
 
 button:hover {
     background: #ff6600;
+}
+
+/* ESTILOS DA PÁGINA DO CARRINHO */
+.container-carrinho {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.container-carrinho h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.lista-carrinho {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-item-carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.card-item-carrinho img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.detalhes-item {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.detalhes-item h4 {
+    font-size: 16px;
+    color: #333;
+}
+
+.detalhes-item p {
+    color: #ff6600;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.btn-remover {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-remover:hover {
+    background-color: #c0392b;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    padding: 30px 0;
+}
+
+.resumo-carrinho {
+    margin-top: 30px;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.resumo-carrinho h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.resumo-carrinho h3 span {
+    color: #ff6600;
+}
+
+.acoes-carrinho {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-limpar {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-limpar:hover {
+    background-color: #95a5a6;
+}
+
+.btn-finalizar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-finalizar:hover {
+    background-color: #2ecc71;
 }
 
 /* RODAPÉ */

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - Fast Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Fast Lanches</h2>
+        <p>Seu Carrinho de Compras</p>
+    </header>
+
+    <nav>
+        <a href="index.html" class="btn-abrir-gaveta" style="text-decoration: none;">⬅ Voltar ao Cardápio</a>
+    </nav>
+
+    <section class="container-carrinho">
+        <h2>Itens Selecionados</h2>
+
+        <div id="lista-carrinho" class="lista-carrinho">
+            </div>
+
+        <div class="resumo-carrinho">
+            <h3>Total: <span id="valor-total">R$ 0,00</span></h3>
+            <div class="acoes-carrinho">
+                <button class="btn-limpar" onclick="limparCarrinho()">Esvaziar Carrinho</button>
+                <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido via WhatsApp 📲</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© Fast Lanches - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function carregarCarrinho() {
+            const container = document.getElementById('lista-carrinho');
+            const totalElemento = document.getElementById('valor-total');
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
+
+            container.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                container.innerHTML = '<p class="carrinho-vazio">Seu carrinho está vazio 🍔</p>';
+                totalElemento.innerText = 'R$ 0,00';
+                return;
+            }
+
+            let total = 0;
+
+            carrinho.forEach((item, index) => {
+                total += item.preco;
+
+                container.innerHTML += `
+                    <div class="card-item-carrinho">
+                        <img src="${item.imagem}" alt="${item.nome}">
+                        <div class="detalhes-item">
+                            <h4>${item.nome}</h4>
+                            <p>R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                        <button class="btn-remover" onclick="removerItem(${index})">Remover</button>
+                    </div>
+                `;
+            });
+
+            totalElemento.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function removerItem(index) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
+            carrinho.splice(index, 1);
+            localStorage.setItem('carrinhoFastLanches', JSON.stringify(carrinho));
+            carregarCarrinho();
+        }
+
+        function limparCarrinho() {
+            localStorage.removeItem('carrinhoFastLanches');
+            carregarCarrinho();
+        }
+
+        function finalizarPedido() {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
+            if (carrinho.length === 0) {
+                alert('Adicione produtos ao carrinho antes de finalizar!');
+                return;
+            }
+
+            let mensagem = "Olá! Gostaria de fazer o seguinte pedido:%0A%0A";
+            let total = 0;
+
+            carrinho.forEach(item => {
+                mensagem += `- ${item.nome}: R$ ${item.preco.toFixed(2).replace('.', ',')}%0A`;
+                total += item.preco;
+            });
+
+            mensagem += `%0A*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+
+            const numeroWhatsapp = "5511999999999";
+            window.open(`https://wa.me/${numeroWhatsapp}?text=${mensagem}`, '_blank');
+        }
+
+        carregarCarrinho();
+    </script>
+</body>
+</html>
