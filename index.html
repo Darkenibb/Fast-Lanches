@@ -17,7 +17,8 @@
 
     <nav>
         <button class="btn-abrir-gaveta" onclick="abrirGavetaPrincipal()">Fazer um pedido 🍔</button>
-        <a href="carrinho.html" class="btn-ver-carrinho">Ver Carrinho 🛒</a>
+        <a href="carrinho.html" class="btn-ver-carrinho" style="text-decoration: none;">Ver Carrinho 🛒</a>
+        <div id="area-usuario" style="display: inline-block;"></div>
     </nav>
 
     <div id="gaveta-principal" class="gaveta">
@@ -287,6 +288,30 @@
             localStorage.setItem('carrinhoFastLanches', JSON.stringify(carrinho));
             mostrarNotificacao(`✅ ${nome} adicionado ao carrinho!`);
         }
+
+        /* VERIFICA SE O USUÁRIO ESTÁ LOGADO AO CARREGAR A PÁGINA */
+        function verificarSessaoUsuario() {
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogadoFastLanches'));
+            const containerUsuario = document.getElementById('area-usuario');
+
+            if (usuarioLogado) {
+                containerUsuario.innerHTML = `
+                    <span style="color: white; font-weight: bold; margin: 0 10px;">Olá, ${usuarioLogado.nome.split(' ')[0]}!</span>
+                    <button onclick="fazerLogout()" style="background-color: #e74c3c; padding: 8px 12px; font-size: 14px;">Sair</button>
+                `;
+            } else {
+                containerUsuario.innerHTML = `
+                    <a href="login.html" class="btn-abrir-gaveta" style="text-decoration: none; background-color: #3498db;">Entrar / Criar Conta 👤</a>
+                `;
+            }
+        }
+
+        function fazerLogout() {
+            localStorage.removeItem('usuarioLogadoFastLanches');
+            window.location.reload();
+        }
+
+        verificarSessaoUsuario();
     </script>
 </body>
 </html>

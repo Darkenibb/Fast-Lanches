@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Cadastro - Fast Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="notificacao" class="notificacao"></div>
+
+    <header>
+        <h2>Fast Lanches</h2>
+        <p>Acesse sua conta para fazer pedidos rapidamente!</p>
+    </header>
+
+    <nav>
+        <a href="index.html" class="btn-abrir-gaveta" style="text-decoration: none;">⬅ Voltar ao Cardápio</a>
+    </nav>
+
+    <section class="container-auth">
+        <div class="box-auth">
+            
+            <div class="abas-auth">
+                <button id="aba-login" class="aba-btn ativa" onclick="mostrarFormulario('login')">Entrar</button>
+                <button id="aba-cadastro" class="aba-btn" onclick="mostrarFormulario('cadastro')">Cadastrar</button>
+            </div>
+
+            <form id="form-login" class="form-auth" onsubmit="realizarLogin(event)">
+                <h2>Acessar Conta</h2>
+                
+                <div class="campo-grupo">
+                    <label for="login-email">E-mail:</label>
+                    <input type="email" id="login-email" placeholder="seuemail@email.com" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="login-senha">Senha:</label>
+                    <input type="password" id="login-senha" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-auth">Entrar 🍔</button>
+            </form>
+
+            <form id="form-cadastro" class="form-auth style-hidden" onsubmit="realizarCadastro(event)">
+                <h2>Criar Nova Conta</h2>
+
+                <div class="campo-grupo">
+                    <label for="cad-nome">Nome Completo:</label>
+                    <input type="text" id="cad-nome" placeholder="Seu nome" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="cad-email">E-mail:</label>
+                    <input type="email" id="cad-email" placeholder="seuemail@email.com" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="cad-telefone">Telefone / WhatsApp:</label>
+                    <input type="tel" id="cad-telefone" placeholder="(11) 99999-9999" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="cad-senha">Senha:</label>
+                    <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                </div>
+
+                <button type="submit" class="btn-auth btn-verde">Cadastrar-se 🚀</button>
+            </form>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© Fast Lanches - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        /* EXIBIR NOTIFICAÇÕES */
+        function mostrarNotificacao(mensagem, sucesso = true) {
+            const toast = document.getElementById('notificacao');
+            toast.innerText = mensagem;
+            toast.style.backgroundColor = sucesso ? '#27ae60' : '#e74c3c';
+            toast.classList.add('visivel');
+
+            setTimeout(() => {
+                toast.classList.remove('visivel');
+            }, 3000);
+        }
+
+        /* ALTERNAR ENTRE LOGIN E CADASTRO */
+        function mostrarFormulario(tipo) {
+            const formLogin = document.getElementById('form-login');
+            const formCadastro = document.getElementById('form-cadastro');
+            const abaLogin = document.getElementById('aba-login');
+            const abaCadastro = document.getElementById('aba-cadastro');
+
+            if (tipo === 'login') {
+                formLogin.classList.remove('style-hidden');
+                formCadastro.classList.add('style-hidden');
+                abaLogin.classList.add('ativa');
+                abaCadastro.classList.remove('ativa');
+            } else {
+                formCadastro.classList.remove('style-hidden');
+                formLogin.classList.add('style-hidden');
+                abaCadastro.classList.add('ativa');
+                abaLogin.classList.remove('ativa');
+            }
+        }
+
+        /* LÓGICA DE CADASTRO DE USUÁRIO */
+        function realizarCadastro(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('cad-nome').value.trim();
+            const email = document.getElementById('cad-email').value.trim().toLowerCase();
+            const telefone = document.getElementById('cad-telefone').value.trim();
+            const senha = document.getElementById('cad-senha').value;
+
+            let usuarios = JSON.parse(localStorage.getItem('usuariosFastLanches')) || [];
+
+            // Verifica se o e-mail já está cadastrado
+            const usuarioExiste = usuarios.some(u => u.email === email);
+
+            if (usuarioExiste) {
+                mostrarNotificacao('⚠️ Este e-mail já está cadastrado!', false);
+                return;
+            }
+
+            // Salva o novo usuário
+            const novoUsuario = { nome, email, telefone, senha };
+            usuarios.push(novoUsuario);
+            localStorage.setItem('usuariosFastLanches', JSON.stringify(usuarios));
+
+            mostrarNotificacao('✅ Cadastro realizado com sucesso!');
+            
+            // Limpa o formulário e alterna para a aba de login
+            document.getElementById('form-cadastro').reset();
+            mostrarFormulario('login');
+        }
+
+        /* LÓGICA DE LOGIN */
+        function realizarLogin(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const senha = document.getElementById('login-senha').value;
+
+            let usuarios = JSON.parse(localStorage.getItem('usuariosFastLanches')) || [];
+
+            // Procura o usuário
+            const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+
+            if (usuario) {
+                // Armazena a sessão do usuário conectado
+                localStorage.setItem('usuarioLogadoFastLanches', JSON.stringify({
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    telefone: usuario.telefone
+                }));
+
+                mostrarNotificacao(`🎉 Bem-vindo(a), ${usuario.nome}!`);
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1200);
+            } else {
+                mostrarNotificacao('❌ E-mail ou senha incorretos!', false);
+            }
+        }
+    </script>
+</body>
+</html>

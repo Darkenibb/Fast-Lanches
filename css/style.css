@@ -67,7 +67,9 @@ nav {
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .btn-abrir-gaveta, .btn-ver-carrinho {
@@ -627,6 +629,81 @@ button:hover {
 }
 
 .btn-confirmar-pagamento:hover {
+    background-color: #2ecc71;
+}
+
+/* TELA DE AUTENTICAÇÃO (LOGIN / REGISTRO) */
+.container-auth {
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+}
+
+.box-auth {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.abas-auth {
+    display: flex;
+    background-color: #eee;
+}
+
+.aba-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+}
+
+.aba-btn.ativa {
+    background: #ffffff;
+    color: #ff914d;
+    border-bottom: 3px solid #ff914d;
+}
+
+.form-auth {
+    padding: 30px;
+}
+
+.form-auth h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+}
+
+.btn-auth {
+    width: 100%;
+    background-color: #ff914d;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-auth:hover {
+    background-color: #ff6600;
+}
+
+.btn-verde {
+    background-color: #27ae60;
+}
+
+.btn-verde:hover {
     background-color: #2ecc71;
 }
 
