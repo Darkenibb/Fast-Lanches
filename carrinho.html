@@ -27,7 +27,7 @@
             <h3>Total: <span id="valor-total">R$ 0,00</span></h3>
             <div class="acoes-carrinho">
                 <button class="btn-limpar" onclick="limparCarrinho()">Esvaziar Carrinho</button>
-                <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido via WhatsApp 📲</button>
+                <button class="btn-finalizar" onclick="irParaPagamento()">Ir para o Pagamento 💳</button>
             </div>
         </div>
     </section>
@@ -82,25 +82,13 @@
             carregarCarrinho();
         }
 
-        function finalizarPedido() {
+        function irParaPagamento() {
             let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
             if (carrinho.length === 0) {
-                alert('Adicione produtos ao carrinho antes de finalizar!');
+                alert('Seu carrinho está vazio! Adicione itens antes de continuar.');
                 return;
             }
-
-            let mensagem = "Olá! Gostaria de fazer o seguinte pedido:%0A%0A";
-            let total = 0;
-
-            carrinho.forEach(item => {
-                mensagem += `- ${item.nome}: R$ ${item.preco.toFixed(2).replace('.', ',')}%0A`;
-                total += item.preco;
-            });
-
-            mensagem += `%0A*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
-
-            const numeroWhatsapp = "5511999999999";
-            window.open(`https://wa.me/${numeroWhatsapp}?text=${mensagem}`, '_blank');
+            window.location.href = 'pagamento.html';
         }
 
         carregarCarrinho();

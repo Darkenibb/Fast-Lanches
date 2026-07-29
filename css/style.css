@@ -10,10 +10,10 @@ html {
 }
 
 body {
-    background: #fff;
+    background: #f4f4f4;
 }
 
-/* NOTIFICAÇÃO TOAST (FLUTUANTE NO CANTO INFERIOR) */
+/* NOTIFICAÇÃO TOAST */
 .notificacao {
     position: fixed;
     bottom: -60px;
@@ -205,7 +205,7 @@ nav {
     background: #ff6600;
 }
 
-/* OVERLAY (FUNDO ESCURO) */
+/* OVERLAY */
 .overlay {
     position: fixed;
     top: 0;
@@ -221,7 +221,7 @@ nav {
     display: block;
 }
 
-/* CARROSSEL DE BANNERS */
+/* CARROSSEL */
 .banner-carrossel {
     position: relative;
     width: 100%;
@@ -367,7 +367,7 @@ button:hover {
     background: #ff6600;
 }
 
-/* ESTILOS DA PÁGINA DO CARRINHO */
+/* CARRINHO DE COMPRAS */
 .container-carrinho {
     width: 90%;
     max-width: 800px;
@@ -490,6 +490,143 @@ button:hover {
 }
 
 .btn-finalizar:hover {
+    background-color: #2ecc71;
+}
+
+/* PÁGINA DE PAGAMENTO */
+.container-pagamento {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box-pagamento {
+    flex: 2;
+    min-width: 300px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.box-resumo-pedido {
+    flex: 1;
+    min-width: 280px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.box-pagamento h2, .box-resumo-pedido h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ff914d;
+    padding-bottom: 5px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.campo-grupo label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.campo-grupo input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.campo-linha {
+    display: flex;
+    gap: 15px;
+}
+
+.campo-linha .campo-grupo {
+    flex: 1;
+}
+
+.opcoes-pagamento {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.opcao-card {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.opcao-card input {
+    cursor: pointer;
+}
+
+.detalhes-forma-pagamento {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.style-hidden {
+    display: none;
+}
+
+.qr-code-placeholder {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.chave-pix {
+    text-align: center;
+    color: #333;
+}
+
+.item-resumo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.btn-confirmar-pagamento {
+    width: 100%;
+    background-color: #27ae60;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confirmar-pagamento:hover {
     background-color: #2ecc71;
 }
 

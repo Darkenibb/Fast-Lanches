@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Fast Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Fast Lanches</h2>
+        <p>Finalização de Pedido e Pagamento</p>
+    </header>
+
+    <nav>
+        <a href="carrinho.html" class="btn-abrir-gaveta" style="text-decoration: none;">⬅ Voltar ao Carrinho</a>
+    </nav>
+
+    <section class="container-pagamento">
+        <div class="box-pagamento">
+            <h2>Dados da Entrega</h2>
+            <form id="form-checkout">
+                <div class="campo-grupo">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="telefone">Telefone / WhatsApp:</label>
+                    <input type="tel" id="telefone" placeholder="(11) 99999-9999" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="endereco">Endereço de Entrega:</label>
+                    <input type="text" id="endereco" placeholder="Rua, Número, Bairro, Ap." required>
+                </div>
+
+                <h2>Forma de Pagamento</h2>
+                <div class="opcoes-pagamento">
+                    <label class="opcao-card">
+                        <input type="radio" name="pagamento" value="Pix" checked onclick="alternarDetalhesPagamento('pix')">
+                        <span>Pix ⚡</span>
+                    </label>
+                    <label class="opcao-card">
+                        <input type="radio" name="pagamento" value="Cartao" onclick="alternarDetalhesPagamento('cartao')">
+                        <span>Cartão Online 💳</span>
+                    </label>
+                    <label class="opcao-card">
+                        <input type="radio" name="pagamento" value="Entrega" onclick="alternarDetalhesPagamento('entrega')">
+                        <span>Pagar na Entrega 💵</span>
+                    </label>
+                </div>
+
+                <div id="detalhes-pix" class="detalhes-forma-pagamento">
+                    <p>Escaneie o QR Code abaixo ou copie a Chave Pix:</p>
+                    <div class="qr-code-placeholder">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=FastLanchesPixExemplo" alt="QR Code Pix">
+                    </div>
+                    <p class="chave-pix"><strong>Chave Pix:</strong> pix@fastlanches.com.br</p>
+                </div>
+
+                <div id="detalhes-cartao" class="detalhes-forma-pagamento style-hidden">
+                    <div class="campo-grupo">
+                        <label for="num-cartao">Número do Cartão:</label>
+                        <input type="text" id="num-cartao" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="campo-linha">
+                        <div class="campo-grupo">
+                            <label for="validade">Validade:</label>
+                            <input type="text" id="validade" placeholder="MM/AA">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="detalhes-entrega" class="detalhes-forma-pagamento style-hidden">
+                    <p>Você pagará diretamente ao entregador (Dinheiro ou Maquininha de Cartão).</p>
+                    <div class="campo-grupo" style="margin-top: 10px;">
+                        <label for="troco">Troco para quanto? (Se for dinheiro):</label>
+                        <input type="text" id="troco" placeholder="Ex: R$ 50,00 ou Não preciso">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="box-resumo-pedido">
+            <h2>Resumo do Pedido</h2>
+            <div id="resumo-itens">
+                </div>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #ddd;">
+            <h3>Total: <span id="total-pagamento">R$ 0,00</span></h3>
+            <button class="btn-confirmar-pagamento" onclick="confirmarPedido()">Confirmar e Pagar 🚀</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© Fast Lanches - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function carregarResumoPagamento() {
+            const container = document.getElementById('resumo-itens');
+            const totalElemento = document.getElementById('total-pagamento');
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
+
+            if (carrinho.length === 0) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            container.innerHTML = '';
+            let total = 0;
+
+            carrinho.forEach(item => {
+                total += item.preco;
+                container.innerHTML += `
+                    <div class="item-resumo">
+                        <span>${item.nome}</span>
+                        <strong>R$ ${item.preco.toFixed(2).replace('.', ',')}</strong>
+                    </div>
+                `;
+            });
+
+            totalElemento.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function alternarDetalhesPagamento(tipo) {
+            document.getElementById('detalhes-pix').classList.add('style-hidden');
+            document.getElementById('detalhes-cartao').classList.add('style-hidden');
+            document.getElementById('detalhes-entrega').classList.add('style-hidden');
+
+            if (tipo === 'pix') {
+                document.getElementById('detalhes-pix').classList.remove('style-hidden');
+            } else if (tipo === 'cartao') {
+                document.getElementById('detalhes-cartao').classList.remove('style-hidden');
+            } else if (tipo === 'entrega') {
+                document.getElementById('detalhes-entrega').classList.remove('style-hidden');
+            }
+        }
+
+        function confirmarPedido() {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const endereco = document.getElementById('endereco').value;
+
+            if (!nome || !telefone || !endereco) {
+                alert('Por favor, preencha todos os dados da entrega!');
+                return;
+            }
+
+            alert('🎉 Pedido confirmado com sucesso! Seu lanche já está sendo preparado.');
+            localStorage.removeItem('carrinhoFastLanches');
+            window.location.href = 'index.html';
+        }
+
+        carregarResumoPagamento();
+    </script>
+</body>
+</html>
