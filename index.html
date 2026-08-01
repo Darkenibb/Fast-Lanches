@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="notificacao" class="notificacao"></div>
+
+    <header>
+        <h2>Fast Lanches</h2>
+        <p>Hambúrgueres, porções, doces e bebidas para matar sua fome.</p>
+    </header>
+
+    <nav>
+        <button class="btn-abrir-gaveta" onclick="abrirGavetaPrincipal()">Fazer um pedido 🍔</button>
+        <a href="carrinho.html" class="btn-ver-carrinho" style="text-decoration: none;">Ver Carrinho 🛒</a>
+        <div id="area-usuario" style="display: inline-block;"></div>
+    </nav>
+
+    <div id="gaveta-principal" class="gaveta">
+        <div class="gaveta-header">
+            <h3>Categorias</h3>
+            <button class="btn-fechar" onclick="fecharGavetaPrincipal()">&times;</button>
+        </div>
+        <div class="gaveta-content">
+            <button class="btn-categoria" onclick="abrirSubGaveta('destaque')">⭐ Produtos em Destaque</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('combos-dia')">🔥 Combos do Dia</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('lanches')">🍔 Lanches</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('doces')">🍩 Doces</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('bebidas')">🥤 Bebidas</button>
+            <button class="btn-categoria" onclick="abrirSubGaveta('combos')">🎁 Combos</button>
+        </div>
+    </div>
+
+    <div id="sub-destaque" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('destaque')">&#10094; Voltar</button>
+            <h3>Produtos em Destaque</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>X-Tudão Especial</h4><p>R$ 28,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Tudão Especial', 28.90, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100"><div><h4>X-Bacon</h4><p>R$ 22,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Bacon', 22.90, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100"><div><h4>Cachorro-quente Especial</h4><p>R$ 15,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cachorro-quente Especial', 15.00, 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100"><div><h4>Mini Pizza</h4><p>R$ 16,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Mini Pizza', 16.90, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100"><div><h4>Milk Shake</h4><p>R$ 16,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Milk Shake', 16.00, 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Brownie Recheado</h4><p>R$ 12,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Brownie Recheado', 12.00, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100"><div><h4>Cookies de Chocolate</h4><p>R$ 8,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cookies de Chocolate', 8.00, 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100"><div><h4>Refrigerante Lata</h4><p>R$ 6,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Refrigerante Lata', 6.00, 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="sub-combos-dia" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('combos-dia')">&#10094; Voltar</button>
+            <h3>Combos do Dia</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100"><div><h4>Combo 1: Hambúrguer + Batata + Refri</h4><p>R$ 31,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo 1: Hambúrguer + Batata + Refri', 31.90, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>Combo 2: X-Burguer + Refrigerante</h4><p>R$ 23,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo 2: X-Burguer + Refrigerante', 23.90, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100"><div><h4>Combo 3: Cachorro-quente + Suco</h4><p>R$ 19,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo 3: Cachorro-quente + Suco', 19.90, 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100"><div><h4>Combo 4: Mini Pizza + Refrigerante</h4><p>R$ 21,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo 4: Mini Pizza + Refrigerante', 21.50, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Combo 5: Doce + Bebida</h4><p>R$ 15,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo 5: Doce + Bebida', 15.90, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="sub-lanches" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('lanches')">&#10094; Voltar</button>
+            <h3>Lanches</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>Hambúrguer</h4><p>R$ 16,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Hambúrguer', 16.00, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>X-Burguer</h4><p>R$ 19,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Burguer', 19.00, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=100"><div><h4>X-Salada</h4><p>R$ 21,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Salada', 21.00, 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100"><div><h4>X-Bacon</h4><p>R$ 22,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Bacon', 22.90, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>X-Tudão</h4><p>R$ 28,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Tudão', 28.90, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100"><div><h4>Cachorro-quente</h4><p>R$ 14,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cachorro-quente', 14.00, 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=100"><div><h4>Misto Quente</h4><p>R$ 10,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Misto Quente', 10.00, 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=100"><div><h4>Sanduíche Natural</h4><p>R$ 12,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Sanduíche Natural', 12.00, 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=100"><div><h4>Pão de Queijo</h4><p>R$ 5,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Pão de Queijo', 5.00, 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100"><div><h4>Mini Pizza</h4><p>R$ 16,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Mini Pizza', 16.90, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="sub-doces" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('doces')">&#10094; Voltar</button>
+            <h3>Doces</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100"><div><h4>Brigadeiro</h4><p>R$ 4,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Brigadeiro', 4.00, 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100"><div><h4>Beijinho</h4><p>R$ 4,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Beijinho', 4.00, 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Brownie</h4><p>R$ 12,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Brownie', 12.00, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Donut</h4><p>R$ 9,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Donut', 9.00, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=100"><div><h4>Cupcake</h4><p>R$ 8,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cupcake', 8.50, 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100"><div><h4>Fatia de Bolo</h4><p>R$ 10,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Fatia de Bolo', 10.00, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100"><div><h4>Bombom</h4><p>R$ 3,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Bombom', 3.50, 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100"><div><h4>Paçoca</h4><p>R$ 2,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Paçoca', 2.50, 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100"><div><h4>Cookies</h4><p>R$ 8,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cookies', 8.00, 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="sub-bebidas" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('bebidas')">&#10094; Voltar</button>
+            <h3>Bebidas</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100"><div><h4>Refrigerantes</h4><p>R$ 6,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Refrigerantes', 6.00, 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Sucos Naturais</h4><p>R$ 8,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Sucos Naturais', 8.50, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Água Mineral</h4><p>R$ 4,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Água Mineral', 4.00, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Água com Gás</h4><p>R$ 4,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Água com Gás', 4.50, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Chá Gelado</h4><p>R$ 7,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Chá Gelado', 7.00, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100"><div><h4>Achocolatado</h4><p>R$ 6,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Achocolatado', 6.50, 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100"><div><h4>Milk Shake</h4><p>R$ 16,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Milk Shake', 16.00, 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100"><div><h4>Energético</h4><p>R$ 12,00</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Energético', 12.00, 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="sub-combos" class="gaveta subgaveta">
+        <div class="gaveta-header">
+            <button class="btn-voltar" onclick="fecharSubGaveta('combos')">&#10094; Voltar</button>
+            <h3>Combos</h3>
+        </div>
+        <div class="gaveta-content">
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100"><div><h4>X-Burguer + Refrigerante</h4><p>R$ 23,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('X-Burguer + Refrigerante', 23.90, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100"><div><h4>Cachorro-quente + Suco</h4><p>R$ 19,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Cachorro-quente + Suco', 19.90, 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100"><div><h4>Hambúrguer + Batata + Refrigerante</h4><p>R$ 31,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Hambúrguer + Batata + Refrigerante', 31.90, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100"><div><h4>Mini Pizza + Refrigerante</h4><p>R$ 21,50</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Mini Pizza + Refrigerante', 21.50, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100')">Adicionar</button></div></div>
+            <div class="item-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100"><div><h4>Combo Doce + Bebida</h4><p>R$ 15,90</p><button class="btn-adicionar" onclick="adicionarAoCarrinho('Combo Doce + Bebida', 15.90, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100')">Adicionar</button></div></div>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="fecharTudo()"></div>
+
+    <section class="banner-carrossel" id="inicio">
+        <div class="slides">
+            <div class="slide slide-1">
+                <h2>Fast Lanches</h2>
+                <p>O melhor hambúrguer e lanches da região!</p>
+            </div>
+            <div class="slide slide-2">
+                <h2>Combos do Dia!</h2>
+                <p>Sua refeição completa com descontos imperdíveis</p>
+            </div>
+            <div class="slide slide-3">
+                <h2>Entrega Rápida</h2>
+                <p>Peça online e receba quentinho na sua casa!</p>
+            </div>
+        </div>
+
+        <button class="btn-slide prev" onclick="mudarSlide(-1)">&#10094;</button>
+        <button class="btn-slide next" onclick="mudarSlide(1)">&#10095;</button>
+    </section>
+
+    <section class="container" id="produtos">
+        <h2>Cardápio em Destaque</h2>
+        <div class="produtos">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="X-Tudão">
+                <div class="card-content">
+                    <h3>X-Tudão</h3>
+                    <p class="preco">R$ 28,90</p>
+                    <button onclick="adicionarAoCarrinho('X-Tudão', 28.90, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500')">Comprar</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500" alt="Hambúrguer + Batata + Refri">
+                <div class="card-content">
+                    <h3>Combo Especial</h3>
+                    <p class="preco">R$ 31,90</p>
+                    <button onclick="adicionarAoCarrinho('Hambúrguer + Batata + Refrigerante', 31.90, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=500')">Comprar</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Milk Shake">
+                <div class="card-content">
+                    <h3>Milk Shake</h3>
+                    <p class="preco">R$ 16,00</p>
+                    <button onclick="adicionarAoCarrinho('Milk Shake', 16.00, 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500')">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="contato">
+        <h2>Contato</h2>
+        <p style="text-align:center;">contato@fastlanches.com.br</p>
+    </section>
+
+    <footer>
+        <p>© Fast Lanches - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        /* LÓGICA DO CARROSSEL DE BANNERS */
+        let indiceAtual = 0;
+        const tempoTroca = 4000;
+
+        function mostrarSlide(indice) {
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            if (indice >= totalSlides) {
+                indiceAtual = 0;
+            } else if (indice < 0) {
+                indiceAtual = totalSlides - 1;
+            } else {
+                indiceAtual = indice;
+            }
+
+            const offset = -indiceAtual * 100;
+            document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+        }
+
+        function mudarSlide(direcao) {
+            mostrarSlide(indiceAtual + direcao);
+        }
+
+        setInterval(() => {
+            mudarSlide(1);
+        }, tempoTroca);
+
+        /* LÓGICA DO MENU GAVETA E SUBGAVETAS */
+        function abrirGavetaPrincipal() {
+            document.getElementById('gaveta-principal').classList.add('ativa');
+            document.getElementById('overlay').classList.add('ativo');
+        }
+
+        function fecharGavetaPrincipal() {
+            document.getElementById('gaveta-principal').classList.remove('ativa');
+            document.getElementById('overlay').classList.remove('ativo');
+        }
+
+        function abrirSubGaveta(idCategoria) {
+            document.getElementById('sub-' + idCategoria).classList.add('ativa');
+        }
+
+        function fecharSubGaveta(idCategoria) {
+            document.getElementById('sub-' + idCategoria).classList.remove('ativa');
+        }
+
+        function fecharTudo() {
+            document.querySelectorAll('.gaveta').forEach(g => g.classList.remove('ativa'));
+            document.getElementById('overlay').classList.remove('ativo');
+        }
+
+        /* FUNÇÃO PARA EXIBIR A NOTIFICAÇÃO DISCRETA */
+        function mostrarNotificacao(mensagem) {
+            const toast = document.getElementById('notificacao');
+            toast.innerText = mensagem;
+            toast.classList.add('visivel');
+
+            setTimeout(() => {
+                toast.classList.remove('visivel');
+            }, 3000);
+        }
+
+        /* FUNÇÃO PARA SALVAR O PRODUTO NO CARRINHO */
+        function adicionarAoCarrinho(nome, preco, imagem) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoFastLanches')) || [];
+            
+            carrinho.push({
+                nome: nome,
+                preco: parseFloat(preco),
+                imagem: imagem
+            });
+
+            localStorage.setItem('carrinhoFastLanches', JSON.stringify(carrinho));
+            mostrarNotificacao(`✅ ${nome} adicionado ao carrinho!`);
+        }
+
+        /* VERIFICA SE O USUÁRIO ESTÁ LOGADO AO CARREGAR A PÁGINA */
+        function verificarSessaoUsuario() {
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogadoFastLanches'));
+            const containerUsuario = document.getElementById('area-usuario');
+
+            if (usuarioLogado) {
+                containerUsuario.innerHTML = `
+                    <span style="color: white; font-weight: bold; margin: 0 10px;">Olá, ${usuarioLogado.nome.split(' ')[0]}!</span>
+                    <button onclick="fazerLogout()" style="background-color: #e74c3c; padding: 8px 12px; font-size: 14px;">Sair</button>
+                `;
+            } else {
+                containerUsuario.innerHTML = `
+                    <a href="login.html" class="btn-abrir-gaveta" style="text-decoration: none; background-color: #3498db;">Entrar / Criar Conta 👤</a>
+                `;
+            }
+        }
+
+        function fazerLogout() {
+            localStorage.removeItem('usuarioLogadoFastLanches');
+            window.location.reload();
+        }
+
+        verificarSessaoUsuario();
+    </script>
+</body>
+</html>
